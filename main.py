@@ -37,7 +37,21 @@ def process_main_action(letter):
 
 
 def create_note_action():
-    pass
+    print('=========================')
+    print('Создание заметки')
+
+    note_title = input('Введите название заметки:\n>').strip()
+    if len(note_title) == 0:
+        print('Название заметки не должно быть пустым!!!')
+        create_note_action()
+
+    note_value = input('Введите текст заметки:\n>').strip()
+    if len(note_value) == 0:
+        print('Заметка не должна быть пустой!!!')
+        create_note_action()
+
+    notebook.add_note(note_title, note_value)
+    show_main_actions()
 
 
 def read_note_action():

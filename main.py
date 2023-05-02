@@ -5,21 +5,23 @@ import notebook
 
 def main():
     notebook.load_all_notes()
+    print("Добро пожаловать в приложение \"Заметки\"")
     show_main_actions()
 
 
 def show_main_actions():
     print_main_actions()
-    process_main_action(input("Введите букву для действия:\n> "))
+    process_main_action(input("Введите букву для действия:\n>"))
 
 
 def print_main_actions():
-    print("Добро пожаловать в приложение \"Заметки\"")
+    print("=======================")
     print("Для работы с программой введите букву для действия (на английском языке)")
     print("C - Создать заметку")
     print("R - Вывести заметку")
     print("U - Обновить заметку")
-    print("D - Удалить заметку")
+    print("D - Удалить заметку\n")
+    print("Q - Выход")
 
 
 def process_main_action(letter):
@@ -31,6 +33,8 @@ def process_main_action(letter):
         update_note_action()
     elif letter == 'D' or letter == 'd':
         delete_note_action()
+    elif letter == 'Q' or letter == 'q':
+        exit()
     else:
         print("Команда не распознана, повторите\n\n")
         show_main_actions()
@@ -55,7 +59,18 @@ def create_note_action():
 
 
 def read_note_action():
-    pass
+    print('=========================')
+    print('Чтение заметки')
+
+    note_id_text = input('Введите номер заметки для чтения:\n>')
+
+    try:
+        note_id = int(note_id_text)
+        notebook.read_note(note_id)
+        show_main_actions()
+    except ValueError:
+        print('Введите корректное число')
+        read_note_action()
 
 
 def update_note_action():
@@ -63,7 +78,18 @@ def update_note_action():
 
 
 def delete_note_action():
-    pass
+    print('=========================')
+    print('Удаление заметки')
+
+    note_id_text = input('Введите номер заметки для удаления:\n>')
+
+    try:
+        note_id = int(note_id_text)
+        notebook.delete_note(note_id)
+        show_main_actions()
+    except ValueError:
+        print('Введите корректное число\n')
+        read_note_action()
 
 
 if __name__ == '__main__':

@@ -13,12 +13,12 @@ class Note:
         self.value = data['value']
         self.changed_at = datetime.strptime(data['changed_at'], '%d.%m.%Y %H:%M')
 
-    def to_dict(self) -> dict:
+    def to_dict(self):
         return {
             'id': self.note_id,
             'title': self.title,
             'value': self.value,
-            'changed_at': self.changed_at,
+            'changed_at': datetime.strftime(self.changed_at, '%d.%m.%Y %H:%M'),
         }
 
     def print_note(self):

@@ -1,5 +1,3 @@
-import datetime
-
 import notebook
 
 
@@ -74,7 +72,20 @@ def read_note_action():
 
 
 def update_note_action():
-    pass
+    print('=========================')
+    print('Обновление заметки')
+
+    note_id_text = input('Введите номер заметки для обновления:\n>')
+
+    try:
+        note_id = int(note_id_text)
+        note_title = input('Введите новое название заметки:\n>')
+        note_value = input('Введите новый текст заметки:\n>')
+        notebook.update_note(note_id, note_title, note_value)
+        show_main_actions()
+    except ValueError:
+        print('Введите корректное число')
+        read_note_action()
 
 
 def delete_note_action():

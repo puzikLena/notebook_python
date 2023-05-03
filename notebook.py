@@ -39,8 +39,19 @@ def add_note(title, value):
     print('==============================================')
 
 
-def update_note(note: Note):
-    pass
+def update_note(note_id, note_title, note_value):
+    if len(notes) == 0:
+        print('Заметки еще не добавлены')
+        return
+    if 0 <= note_id < len(notes):
+        note = notes[note_id]
+        note.title = note_title
+        note.value = note_value
+        note.changed_at = datetime.datetime.now()
+        write_notes()
+        print(f'Заметка #{note_id} обновлена')
+    else:
+        print(f'Номер заметки должен быть от 0 до {len(notes) - 1}')
 
 
 def delete_note(note_id):
